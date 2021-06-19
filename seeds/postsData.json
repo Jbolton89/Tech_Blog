@@ -1,0 +1,17 @@
+[
+    {
+        "name": "What is the meaning of Lorem ipsum?",
+        "description": "Literally it does not mean anything. It is a sequence of words without a sense of Latin derivation that make up a text also known as filler text, fictitious, blind or placeholder"
+    },  
+    {
+        "name": "Why is Lorem Ipsum Dolor used?",
+        "description": "The Lorem Ipsum text is used to fill spaces designated to host texts that have not yet been published. They use programmers, graphic designers, typographers to get a real impression of the digital / advertising / editorial product they are working on."
+    },
+    {
+        "name": "What is the most used version?",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. 
+        Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, 
+        sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
+    
+]
