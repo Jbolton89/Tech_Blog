@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const {
-    User
-} = require('../../models');
+// const {
+//     User
+// } = require('../../models');
 // Can this be Users? like the model? is this how handlebars are linked?
 router.post('/', async (req, res) => {
     try {
@@ -62,14 +62,14 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('./logout', (req, res) => { 
-    if (req.session.logged_in) { 
-        req.session.destroy(() => { 
-            res.status(204).end(); 
+router.post('./logout', (req, res) => {
+    if (req.session.logged_in) {
+        req.session.destroy(() => {
+            res.status(204).end();
         });
-    } else { 
+    } else {
         res.status(404).end();
     }
 });
 
-module.exports = router; 
+module.exports = router;
