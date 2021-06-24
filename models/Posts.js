@@ -1,6 +1,6 @@
 const sequelize = require('../config/connection');
 const {
-    model,
+    Model,
     DataTypes
 } = require('sequelize');
 
