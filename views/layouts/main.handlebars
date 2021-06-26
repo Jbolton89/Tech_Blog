@@ -21,27 +21,32 @@
       <div class="container-fluid">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/dashboard">Your dashboard</a> |
+        <a href="/dashboard">Welcome to the dashboard</a> |
         <button class="no-button" id="logout">logout</button>
         {{else}}
-        <a href="/login">login</a>
+        <a href="/login" class="btn btn-dark" role="button" aria-pressed="true">login</a>
         {{/if}}
         </div>
       </nav>
     </header>
-    <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
+    <main>
+      <div class="container container-fluid">
       {{{ body }}}
+      </div>
     </main>
     <footer>
       
     </footer>
   </div>
 
-  <!-- Render script for logged in users only -->
+  <!-- This script is for logged in clients only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"
+    link rel="stylesheet" href="/css/style.css">
+  </script>
 </body>
 
 </html>

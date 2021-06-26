@@ -1,6 +1,50 @@
 const router = require('express').Router();
-// const { Project, User } = require('../models');
-// const withAuth = require('../utils/auth');
+const {
+  Post,
+  User,
+  Comment
+} = require('../models');
+const Comments = require('../models/Comments');
+const Users = require('../models/Users');
+const withAuth = require('../utils/auth');
+
+router.get('/', async (req, res) => {
+  try {
+    const mainPosts = await Post.findAll({
+      include: [{
+          model: Users,
+          attributes: ['name'],
+        },
+        {
+          model: Comments,
+          attributes: ['comment'],
+        },
+      ]
+    });
+
+    const posts = mainPosts.map((post) => post.get({
+      plain: true
+    }));
+    res.render('homepage', {
+      posts,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get('/', async (req, res) => {
   try {
@@ -10,27 +54,36 @@ router.get('/', async (req, res) => {
   }
 });
 
-// router.get('/project/:id', async (req, res) => {
-//   try {
-//     const projectData = await Project.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//       ],
-//     });
 
-//     const project = projectData.get({ plain: true });
+router.get('/', async (req, res) => {
+  try {
+    const PostData = await Post.findByPk(req.params.id, {
+      include: [{
+        model: User,
+        attributes: ['name'],
+      }, ],
+    });
 
-//     res.render('project', {
-//       ...project,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    const posts = allPosts.map((post.get({
+      plain: true
+    })));
+
+    res.render('dashboard', {
+      ...posts,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('./dashboard');
+    return;
+  }
+  res.render('login');
+});
 
 // // Use withAuth middleware to prevent access to route
 // router.get('/profile', withAuth, async (req, res) => {
