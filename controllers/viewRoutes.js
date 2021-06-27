@@ -5,12 +5,14 @@ const {
   Comment
 } = require('../models');
 const Comments = require('../models/Comments');
+const Posts = require('../models/Posts');
 const Users = require('../models/Users');
 const withAuth = require('../utils/auth');
 
+// All posts and JOIN with user and comment
 router.get('/', async (req, res) => {
   try {
-    const mainPosts = await Post.findAll({
+    const mainPosts = await Posts.findAll({
       include: [{
           model: Users,
           attributes: ['name'],
@@ -34,7 +36,31 @@ router.get('/', async (req, res) => {
   }
 });
 
+// If logged in - then redirects to another route 
+router.get('/login', (req, res) => { 
+  if (req.session.logged_in) { 
+    res.redirect('./dashboard');
+    return; 
+  }
+  res.render('login');
+});
 
+// Find user by Session ID
+router.get('/dashboard', withAuth, async (req, res) => { 
+  try { 
+    const mainUsers = await Posts.findByPk(req.params.id, { 
+      attributes: { include: ['name'], exclude: ['password'] },
+      include: [{ model: Posts }],
+    });
+
+    const user = mainUsers.get ({ plain: true });
+
+    res.render('dashboard', { 
+      ...user, 
+      logged_in: req.session.logged_in, 
+    }); 
+  } catch (err) { res.status(500).json(err) }
+}); 
 
 
 
