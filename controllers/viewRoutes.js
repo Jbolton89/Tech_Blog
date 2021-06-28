@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const {
-  Post,
-  User,
-  Comment
+  Posts,
+  Users,
+  Comments,
 } = require('../models');
-const Comments = require('../models/Comments');
-const Posts = require('../models/Posts');
-const Users = require('../models/Users');
+// const Comments = require('../models/Comments');
+// const Posts = require('../models/Posts');
+// const Users = require('../models/Users');
 const withAuth = require('../utils/auth');
 
 // All posts and JOIN with user and comment
