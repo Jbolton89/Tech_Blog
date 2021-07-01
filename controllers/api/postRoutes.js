@@ -15,14 +15,14 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/:id/comment', async (req, res) => {
     try { 
         const newComment = await Comments.create({ 
-            Comment: req.body.comment,
+            comment: req.body.comment,
             user_id: req.session.user_id,
             post_id: req.params.id 
          });
-         res.status(200).json(newComment1);
+         res.status(200).json(newComment);
     } catch (err) { 
         res.status(400).json(err);
     }

@@ -5,48 +5,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tech Blog!</title>
-  <link rel="<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  <link rel=" stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css"
-</head>
+  <link rel="stylesheet" href="/css/style.css">
+  </head> 
 
-<body>
+  <body>
   <div class="flex-column justify-space-around">
-    <header class="display-flex justify-space-between align-center p-2">
+    <header class="display-flex justify-space-between align-center p-2 bg-dark">
       <h1>
-        <span role="img" aria-label="money">💸</span>
+        <span role="img" aria-label="techblog">👨‍💻</span>
         <a href="/">Welcome to Tech Blog</a>
       </h1>
       <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-      <div class="container-fluid">
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="/dashboard">Welcome to the dashboard</a> |
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="/login" class="btn btn-dark" role="button" aria-pressed="true">login</a>
-        {{/if}}
+        <div class="container-fluid">
+          <!-- Conditionally render login or logout links -->
+          {{#if logged_in}}
+          <a href="/dashboard">Welcome to the dashboard</a> |
+          <button class="no-button" id="logout">logout</button>
+          {{else}}
+          <a href="/login" class="btn btn-dark" role="button" aria-pressed="true">login</a>
+          {{/if}}
         </div>
       </nav>
     </header>
     <main>
       <div class="container container-fluid">
-      {{{ body }}}
+        {{{ body }}}
       </div>
     </main>
-    <footer>
-      
-    </footer>
-  </div>
 
-  <!-- This script is for logged in clients only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"
-    link rel="stylesheet" href="/css/style.css">
-  </script>
-</body>
+
+
+
+    <!-- This script is for logged in clients only -->
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" link
+      rel="stylesheet" href="/css/style.css">
+    </script>
+    </body>
+    <footer>
+    </footer>
+
 
 </html>

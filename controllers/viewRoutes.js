@@ -45,6 +45,51 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// GET signup 
+
+router.get("/login", async (req, res) => { 
+  res.render("login");
+});
+
+router.get("/signup", async (req, res) => { 
+  res.render("signup");
+});
+
+router.get("/post", async (req, res) => { 
+  res.render("newpost");
+}); 
+
+router.get('/post/:id', async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: Users,
+          attributes: ['name'],
+        },
+        {
+          model: Comments,
+          include: [
+            {
+              model: Users,
+            },
+          ],
+        },
+      ],
+    });
+    const post = postData.get({ plain: true });
+
+    console.log('POST =', post);
+
+    res.render('post', {
+      ...post,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Find user by Session ID
 router.get('/dashboard', withAuth, async (req, res) => { 
   try { 
@@ -61,6 +106,26 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }); 
   } catch (err) { res.status(500).json(err) }
 }); 
+
+router.get("/dashboard/:id", async (req, res) => { 
+  try { 
+    const singlePost = await Post.findByPk(req.params.id, { 
+      include: [ 
+        { 
+          model: Comments, 
+          attributes: ["comment", "user_id"],
+          include: [
+            { 
+              model: Users, 
+              attributes: ["username"],
+            },
+          ],
+        },
+      ]}
+      )
+  }
+});
+
 
 
 
