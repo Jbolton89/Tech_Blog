@@ -36,6 +36,8 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+// Login routes
 // If logged in - then redirects to another route 
 router.get('/login', (req, res) => { 
   if (req.session.logged_in) { 
@@ -45,11 +47,9 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-// GET signup 
 
-router.get("/login", async (req, res) => { 
-  res.render("login");
-});
+
+
 
 router.get("/signup", async (req, res) => { 
   res.render("signup");
@@ -123,8 +123,10 @@ router.get("/dashboard/:id", async (req, res) => {
         },
       ]}
       )
+    } catch (err) { res.status(500).json(err)
+    }
   }
-});
+  );
 
 
 

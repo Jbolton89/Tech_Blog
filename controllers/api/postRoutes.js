@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Posts, Users, Comments } = require('../../models');
-const Comments = require('../../models/Comments');
-// What is withAuth? and why are we not using it in this example? 
+const withAuth = require('../../utils/auth');
+
 router.post('/', async (req, res) => {
     try { 
         const newPost = await Posts.create({ 
@@ -28,9 +28,19 @@ router.post('/:id/comment', async (req, res) => {
     }
 });
 
-router.get('/', (req, res) => { 
-    Posts.findAll({
-        include: [{ model:user, attributes: ['name']}]
-    })
+router.delete("/:id", async (req, res) => {
+    try {
+      const deletePost = await Post.destroy({
+        where: { id: req.params.id },
+      });
+      if (!deletePost) {
+        res(404).json({ message: "Nothing found with that ID" });
+      }
+      res.status(200).json(deletePost);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  });
+  
 
-})
+  module.exports = router; 
